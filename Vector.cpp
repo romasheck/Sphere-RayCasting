@@ -45,7 +45,7 @@ Vector Vector::operator * (double coef)
 
 Vector Vector::projection (Vector base)
 {
-    return ((*this) - (base * ((*this) * base / base.norm()))); 
+    return ((*this) - (base * ((*this) * base / (base*base)))); 
 }
 
 Vector Vector::reflect (Vector base)

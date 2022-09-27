@@ -1,45 +1,45 @@
 #include "libDrow.hpp"
 
-sf::RectangleShape addPixel(sf::Vector2f position, sf::Color color)
+sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Window with smth...");
+
+Color Color::operator + (Color term)
 {
-    sf::RectangleShape pixel;
-
-    pixel.setSize({ 1.f, 1.f });
-    pixel.setFillColor(color);
-    pixel.setPosition(position);
-
-    return pixel;
+    return Color{CorrectSum(term.R(), R()), CorrectSum(term.G(), G()),CorrectSum(term.B(), B()),CorrectSum(term.A(), A())};
 }
 
-std::vector<sf::RectangleShape> MakePixels (sf::Color color)
+Color Color::operator * (Color factor)
 {
-    std::vector<sf::RectangleShape> pixels;
+    return Color{CorrectMul(R(), factor.R()), CorrectMul(G(), factor.G()), CorrectMul(B(), factor.B()), CorrectMul(A(), factor.A())};
+}
 
+int FillInPixels (Color color, std::vector<Pixel>* pixels)
+{
     for (uint32_t i = 0 ; i < PIXELS_AMOUNT ; i++)
     {
-        pixels.push_back(addPixel({i % WIDTH, i / WIDTH}, color));
+        Pixel pixel{{i % WIDTH, i / WIDTH}, color};
+        pixels->push_back(pixel);
     }
 
-    return pixels;
+    return 0;
 }
 
-int CycleDrowing (const std::vector<sf::RectangleShape> *pixels, sf::RenderWindow *window)
+int CycleDrowing (const std::vector<Pixel> *pixels)
 {
-    while (window->isOpen())
+    while (window.isOpen())
     {
         sf::Event event;
-        while (window->pollEvent(event))
+        while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
-                window->close();
+                window.close();
         }
 
-        window->clear();
+        window.clear();
         for (const auto& pixel : *pixels)
         {
-            window->draw(pixel);
+            window.draw(pixel.pixel_);
         }
-        window->display();
+        window.display();
         
     }
 

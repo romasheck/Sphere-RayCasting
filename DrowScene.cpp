@@ -10,16 +10,16 @@ double LineToY (float line)
     return ((-line + HEIGHT/2) * 2* Y_LIM / HEIGHT);
 }
 
-scene_objs::Point PixelToPoint (sf::RectangleShape pixel)
+Point PixelToPoint (Pixel pixel)
 {
-    sf::Vector2f position = pixel.getPosition();
+    Pos position = pixel.Position();
 
-    scene_objs::Point point(ColumnToX(position.x), LineToY(position.y));
+    Point point(ColumnToX(position.column), LineToY(position.line));
 
     return point;
 }
 
-unsigned char Intensity (scene_objs::Point point, scene_objs::Sphere sphere, Light_t Light)
+unsigned char Intensity (Point point,  Sphere sphere, Light_t Light)
 {
     point.z_ = sphere.RestoreZ(point);
     Vector RV = point.RVector();
@@ -35,22 +35,22 @@ unsigned char Intensity (scene_objs::Point point, scene_objs::Sphere sphere, Lig
         {
             return 255;
         }
-
         return (unsigned char) I;
     }
 
     return A;
 }
 
-int SpherInPixels (std::vector<sf::RectangleShape> *pixels, scene_objs::Sphere sphere, Light_t Light)
+int SpherInPixels (std::vector<Pixel> *pixels,  Sphere sphere, Light_t Light)
 {
     for (auto& pixel : *pixels)
     {
-        scene_objs::Point point = PixelToPoint(pixel);
+        Point point = PixelToPoint(pixel);
         
         if(sphere.CheckBelongsXY (point))
         {
-            pixel.setFillColor({225, 0, 0, Intensity(point, sphere, Light)});
+            //pixel.setFillColor({225, 0, 0, Intensity(point, sphere, Light)});
+            pixel.setColor(Color{225, 0, 0, Intensity(point, sphere, Light)});
         }
     }
 
