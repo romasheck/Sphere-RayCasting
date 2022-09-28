@@ -18,7 +18,8 @@ class Color
 
     public:
 
-    Color(uint8_t R, uint8_t G, uint8_t B, uint8_t A): color_{R, G, B, A} {};
+    Color(uint8_t R, uint8_t G, uint8_t B): color_{R, G, B, 255} {};
+    Color(uint8_t R, uint8_t G, uint8_t B, uint8_t A): color_{R, G, B, 255} {};
     Color(sf::Color color): color_(color) {};
     ~Color() {};
 
@@ -35,10 +36,11 @@ class Color
     Color operator * (double coef);
 };
 
-#define BACKGROUG_COLOR Color{30, 30, 30, 30}
 #define WHITE           Color{sf::Color::White}
 #define RED             Color{sf::Color::Red}
 #define BLACK           Color{sf::Color::Black}
+#define GREEN           Color{sf::Color::Green}
+#define BLUE            Color{sf::Color::Blue}
 
 struct Pos
 {

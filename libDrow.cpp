@@ -4,12 +4,18 @@ sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Window with smth...");
 
 Color Color::operator + (Color term)
 {
-    return Color{CorrectSum(term.R(), R()), CorrectSum(term.G(), G()),CorrectSum(term.B(), B()),CorrectSum(term.A(), A())};
+    return Color{CorrectSum(term.R(), R()), CorrectSum(term.G(), G()),CorrectSum(term.B(), B())};
 }
 
 Color Color::operator * (Color factor)
 {
-    return Color{CorrectMul(R(), factor.R()), CorrectMul(G(), factor.G()), CorrectMul(B(), factor.B()), CorrectMul(A(), factor.A())};
+    return Color{CorrectMul(R(), factor.R()), CorrectMul(G(), factor.G()), CorrectMul(B(), factor.B())};
+}
+
+Color Color::operator * (double coef)
+{
+    //printf("in func oper _%f_\n", coef);
+    return Color{CorrectMulC(R(), coef), CorrectMulC(G(), coef), CorrectMulC(B(), coef)};
 }
 
 int FillInPixels (Color color, std::vector<Pixel>* pixels)

@@ -50,11 +50,11 @@ Vector Vector::projection (Vector base)
 
 Vector Vector::reflect (Vector base)
 {
-    return ((*this) + (base - (*this).projection(base)) * (2));
+    return ((*this) + (base - projection(base)) * (2));
 }
 
 double Vector::operator ^ (Vector a)
 {
-    return (((*this)*a)/((*this).norm()*a.norm()));
+    return (((*this)*a)/(norm()*a.norm()));
 }
 

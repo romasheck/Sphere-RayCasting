@@ -5,12 +5,14 @@ int main()
 {
     PRINT_LINE
     std::vector<Pixel> pixels;
-    FillInPixels (Color{30,30,30,30}, &pixels);
+    FillInPixels (BACKGROUND_COLOR, &pixels);
     PRINT_LINE
     Sphere sphere( Point{0,0,0}, X_LIM);
-    PRINT_LINE
-    Light_t Light = {{400, 400, 400}, WHITE};
-    SpherInPixels(&pixels, sphere, Light);
+    Object object = {sphere, RED, 21};
+    Light light = {{-4000, 4000, 4000}, WHITE};
+    Point veiwer = {0, 0, 1600};
+    Scene scene = {object, light, veiwer, WHITE};
+    scene.ObjectInPixels(&pixels);
     PRINT_LINE
     CycleDrowing(&pixels);
     PRINT_LINE
