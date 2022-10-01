@@ -8,6 +8,8 @@
 #define A 0.3
 #define D 0.7
 
+namespace scn
+{
 struct Light
 {
     Point place_;
@@ -35,11 +37,15 @@ class Scene
 
     void ObjectInPixels (std::vector<Pixel> *pixels);
 
+
+
     private:
 
     Color CalcColor (Point point);
 };
 
+
+}
 double                  ColumnToX           (float column);
 
 double                  LineToY             (float line);

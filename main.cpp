@@ -3,19 +3,20 @@
 
 int main()
 {
-    PRINT_LINE
     std::vector<Pixel> pixels;
     FillInPixels (BACKGROUND_COLOR, &pixels);
-    PRINT_LINE
+
     Sphere sphere( Point{0,0,0}, X_LIM);
-    Object object = {sphere, RED, 21};
-    Light light = {{-4000, 4000, 4000}, WHITE};
-    Point veiwer = {0, 0, 1600};
-    Scene scene = {object, light, veiwer, WHITE};
+    scn::Object object = {sphere, RED, 20};
+    scn::Light light = {{5*X_LIM, 5*X_LIM, 5*X_LIM}, WHITE};
+    Point veiwer = {0, 0, 5*X_LIM};
+
+    scn::Scene scene = {object, light, veiwer, Color{128, 0, 255}};
+
     scene.ObjectInPixels(&pixels);
-    PRINT_LINE
+    
     CycleDrowing(&pixels);
-    PRINT_LINE
+
 
     return 0;
 }

@@ -7,8 +7,8 @@
 
 enum WindowParameters
 {
-    WIDTH = 800,
-    HEIGHT = 800,
+    WIDTH = 1000,
+    HEIGHT = 1000,
     PIXELS_AMOUNT = WIDTH*HEIGHT
 };
 

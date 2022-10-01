@@ -41,10 +41,12 @@ int CycleDrowing (const std::vector<Pixel> *pixels)
         }
 
         window.clear();
+
         for (const auto& pixel : *pixels)
         {
             window.draw(pixel.pixel_);
         }
+        
         window.display();
         
     }

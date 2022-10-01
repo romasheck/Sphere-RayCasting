@@ -41,6 +41,9 @@ unsigned char Intensity (Point point,  Sphere sphere, Light light)
     return A;
 }
 */
+
+using namespace scn;
+
 void Scene::ObjectInPixels (std::vector<Pixel> *pixels)
 {
     for (auto& pixel : *pixels)
@@ -69,7 +72,12 @@ Color Scene::CalcColor (Point point)
     Color Dif_term = (light_.color_ * object_.color_ * (RL^R) * D);
 
     Vector RV = V - R;
-    Color Spec_term = (light_.color_ * pow(RV^RL.reflect(R), object_.n_exp));
+    double cos_VL = RV^(RL.reflect(R));
+    if (cos_VL < 0)
+    {
+        cos_VL = 0;
+    }
+    Color Spec_term = (light_.color_ * pow(cos_VL, object_.n_exp));//
     
     return Dif_term + Amb_term + Spec_term;
 }

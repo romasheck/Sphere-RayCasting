@@ -8,8 +8,8 @@
 
 enum CoordLimits
 {
-    X_LIM = 400,
-    Y_LIM = 400
+    X_LIM = 4000,
+    Y_LIM = 4000
 };
 
 struct Point 
