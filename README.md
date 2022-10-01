@@ -48,4 +48,4 @@ Ambient light illuminate all object on the scene just because it exists.
 
 Diffusion illumination depend on place of light source and object. There is general reason why we percieve image volume. Resulted color depend on objects color and light source color. 
 
-Specular illumination also depend on place of ... There is reason of flare existance. Resulted color depend on only light source color.
+Specular illumination also depend on place of ... There is reason of flare existance. Resulted color depend only on light source color.
